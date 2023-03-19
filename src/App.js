@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import { useState} from 'react';
 import './App.css';
+import { image } from './image';
+
+
 
 function App() {
+  const [counter,setcounter] = useState(0);
+  const [reverseorder, setReverseOrder] = useState(false)
+
+  const handelChangePic =() => {
+    const nextCounter = reverseorder ? counter - 1 : counter+ 1;
+    if
+    (nextCounter >= image.length){
+      setcounter(image.length -2);
+      setReverseOrder(true)
+    }else if(nextCounter <= 0){
+      setcounter(0);
+      setReverseOrder(false)
+    }else{
+      setcounter(nextCounter)
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="slider-countainer">
+      <div>
+        {image.map((image,index) => (
+         <img className='slideImage' key={index} src={image} style = {{bottom: '$'(index *1
+          )}}
+        
+       </div>
+
+      <div className='btn-div'>
+        <button onClick={handelChangePic}>change Pic</button>
+
+      </div>
     </div>
   );
 }
